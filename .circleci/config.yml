@@ -1,0 +1,26 @@
+
+version: 2.1
+
+jobs:
+  build:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+
+      - run: sudo apt-get update
+      - run: sudo apt install -y openjdk-11-jdk
+      - checkout
+      - run:
+          name: "Testing"
+          command: echo "Hi"
+      - run: echo "hello world!"
+      - run: |
+           echo $CIRCLE_PULL_REQUESTS
+      - run: echo "bye world."   
+      
+
+workflows:
+  my-workflow:
+    jobs:
+      - run-tests
+      - second_job   
